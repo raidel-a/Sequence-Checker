@@ -1,15 +1,16 @@
-# Sequence Multiplier Finder
+# Sequence Checker
 
-This Java program finds the multipliers of a sequence of numbers. It checks combinations of three numbers (x, y, z), each ranging from -10 to 10, against a predefined sequence. If a match is found, it prints the output sequence and the values of x, y, and z. If no match is found, it prints "No multipliers found" and calls a test function.
+This Java program checks if a given sequence follows a specific pattern. The pattern is defined by three multipliers (x, y, z) that are applied to previous elements in the sequence to calculate the next element.
 
-## Code Explanation
+## Code Overview
 
-The `main` method starts by creating a Scanner object for user input and a boolean variable `continueTesting` to control the main loop. The program then enters a loop where it checks all combinations of x, y, and z against the sequence. If a match is found, it prints the output sequence and the multipliers, and breaks the loop. If no match is found, it prints "No multipliers found" and calls a test function.
+The `main` function iterates over a range of potential multipliers, and for each combination, it checks if the sequence follows the pattern defined by these multipliers. If a valid sequence is found, it prints the sequence and the multipliers. If no valid sequence is found, it prints "No multipliers found".
 
-After each run, the program asks the user if they want to test another sequence. If the user enters "yes", it prompts them to enter a new sequence, which replaces the old sequence. If the user enters "no", it exits the loop and ends the program.
+The `checkSequence` function takes three multipliers (x, y, z) as input and checks if the sequence follows the pattern defined by these multipliers. It returns the output sequence if it's valid, or null otherwise.
 
-The `parseSequence` method is used to convert the user's input into an array of integers. The `checkSequence` method checks a sequence of numbers against a calculation involving three variables (x, y, z), and stores the output sequence when a match is found.
+## Usage
 
+To run the program, simply compile and run the Java file. The sequence to be checked is hardcoded in the program.
 ## Note
 
 This is a brute force recursive solution

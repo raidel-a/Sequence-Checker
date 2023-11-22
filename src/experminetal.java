@@ -1,7 +1,15 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class v2 {
+public class experminetal {
+
+    //    no sequence test
+    //  static int[] sequence = {1,4,5,8,4,7,4,78,9,4567,45,457,45698,35678658};
+
+    //    group 3 for testing algo
+    //  static int[] sequence = {1, 1, 2, -5, 22, -106, 475, -2171, 9893, -45080, 205453, -936304, 4267030, -19446179, 88622237, -403878935, 1840601122, 201746431, -427139774, 1878826890}
+
+    //    group 5
     static int[] sequence = {1, 1, 2, -16, 52, -152, 464, -1456, 4576, -14336, 44864, -140416, 439552, -1376000, 4307456, -13484032, 42210304, -132134912, 413634560, -1294839808};
 
     public static void main(String[] args) {
@@ -15,9 +23,10 @@ public class v2 {
             for (int x = -10; x <= 10; x++) {
                 for (int y = -10; y <= 10; y++) {
                     for (int z = -10; z <= 10; z++) {
-                        ArrayList<Integer> outputSequence = new ArrayList<>();
-                        if (checkSequence(x, y, z, outputSequence)) {
-                            System.out.println("Output sequence: " + outputSequence);
+                        int[] outputSequence = checkSequence(x, y, z);
+                        if (outputSequence != null) {
+                            System.out.println("Given sequence " + Arrays.toString(sequence));
+                            System.out.println("Output sequence: " + Arrays.toString(outputSequence));
                             System.out.println("Found multipliers: x=" + x + ", y=" + y + ", z=" + z);
                             found = true;
                             break;
@@ -33,7 +42,7 @@ public class v2 {
                 test();
             }
 
-            System.out.println("Would you like to test another sequence? (yes/no)");
+            System.out.println("Would you like to test another sequence? yes / no");
             String response = scanner.nextLine();
 
             if (response.equalsIgnoreCase("yes")) {
@@ -59,22 +68,29 @@ public class v2 {
         return sequence;
     }
 
-    public static boolean checkSequence(int x, int y, int z, ArrayList<Integer> outputSequence) {
-        outputSequence.add(sequence[0]);
-        outputSequence.add(sequence[1]);
-        outputSequence.add(sequence[2]);
+    public static int[] checkSequence(int x, int y, int z) {
+        // Create a new array to store the output sequence
+        int[] outputSequence = new int[sequence.length];
 
-        for (int i = 3; i < sequence.length; i++) {
-            int calculatedValue = x * sequence[i - 1] + y * sequence[i - 2] + z * sequence[i - 3];
-            if (sequence[i] == calculatedValue) {
-                outputSequence.add(calculatedValue);
-            } else {
-                return false;
-            }
+        // Add the base cases to the output sequence
+        for (int i = 0; i < 3; i++) {
+            outputSequence[i] = sequence[i];
         }
 
-        return true;
+        int prev = sequence[2];     // temporary variable to store the previous value
+
+        for (int i = 3; i < sequence.length; i++) {
+            int calculatedValue = x * prev + y * sequence[i - 2] + z * sequence[i - 3];
+            if (sequence[i] == calculatedValue) {
+                outputSequence[i] = calculatedValue;
+                prev = calculatedValue;     // update the previous value
+            } else {
+                return null;
+            }
+        }
+        return outputSequence;
     }
+
 
     public static void infoHeader() {
         System.out.println("======================================");
