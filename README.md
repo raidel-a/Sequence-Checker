@@ -1,4 +1,5 @@
-# Sequence Checker codingAssignment_3 COP3337
+# Sequence Checker 
+## COP3337_codingAssignment_3
 
 This Java program checks if a given sequence follows a specific pattern. The pattern is defined by three multipliers (x, y, z) that are applied to previous elements in the sequence to calculate the next element.
 
